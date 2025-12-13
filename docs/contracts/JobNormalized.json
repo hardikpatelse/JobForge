@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://jobforge.io/schemas/events/JobNormalized.json",
+  "title": "JobNormalized",
+  "description": "Event published when a raw job posting is normalized into a standard format",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "timestamp",
+    "source",
+    "data"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this event"
+    },
+    "eventType": {
+      "type": "string",
+      "const": "JobNormalized",
+      "description": "Type of event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event was created"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source system that published this event (e.g., normalizer-worker)"
+    },
+    "correlationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Correlation ID for tracing across services"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "jobId",
+        "title",
+        "company",
+        "location"
+      ],
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "Unique identifier for the job"
+        },
+        "title": {
+          "type": "string",
+          "description": "Normalized job title"
+        },
+        "company": {
+          "type": "string",
+          "description": "Company name"
+        },
+        "location": {
+          "type": "object",
+          "properties": {
+            "city": { "type": "string" },
+            "state": { "type": "string" },
+            "country": { "type": "string" },
+            "remote": { "type": "boolean" }
+          }
+        },
+        "description": {
+          "type": "string",
+          "description": "Normalized job description"
+        },
+        "salary": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" },
+            "currency": { "type": "string" }
+          }
+        },
+        "employmentType": {
+          "type": "string",
+          "enum": ["full-time", "part-time", "contract", "internship"]
+        },
+        "postedDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "normalizedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the job was normalized"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+# CODEOWNERS file for JobForge
+# Define code ownership for pull request reviews
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global default owners (fill in GitHub usernames when team is established)
+# * @team-lead @architect
+
+# Documentation
+# /docs/ @tech-writer @architect
+
+# Infrastructure
+# /infra/ @devops-team @architect
+
+# Services
+# /services/ @backend-team
+
+# Workers
+# /workers/ @backend-team
+
+# Frontend
+# /frontend/ @frontend-team
+
+# Pipelines and CI/CD
+# /pipelines/ @devops-team
+
+# Event Contracts (critical - requires architect review)
+# /docs/contracts/ @architect @backend-team
