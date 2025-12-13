@@ -7,7 +7,7 @@
 - hotfix/*: emergency fixes from main
 
 ## Pull Requests
-- Target develop unless releasing/hotfixing
+- Target development unless releasing/hotfixing
 - Small, focused changes
 - Include description, rationale, and impact
 - Link to relevant docs (contracts, ADRs)
