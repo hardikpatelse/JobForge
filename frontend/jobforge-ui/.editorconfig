@@ -1,0 +1,14 @@
+# EditorConfig for Angular project
+# Inherits from root .editorconfig
+
+root = false
+
+[*.ts]
+indent_size = 2
+quote_type = single
+
+[*.html]
+indent_size = 2
+
+[*.scss]
+indent_size = 2
