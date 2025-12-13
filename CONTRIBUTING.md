@@ -2,7 +2,7 @@
 
 ## Branching Strategy
 - main: protected, production-ready code
-- develop: integration branch for upcoming work
+- development: integration branch for upcoming work
 - feature/*: short-lived branches from develop
 - hotfix/*: emergency fixes from main
 
