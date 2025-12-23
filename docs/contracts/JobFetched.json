@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://jobforge.io/schemas/events/JobFetched.json",
+  "title": "JobFetched",
+  "description": "Event published when a job posting is fetched from an external source",
+  "type": "object",
+  "required": [
+    "eventId",
+    "eventType",
+    "timestamp",
+    "source",
+    "data"
+  ],
+  "properties": {
+    "eventId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Unique identifier for this event"
+    },
+    "eventType": {
+      "type": "string",
+      "const": "JobFetched",
+      "description": "Type of event"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the event was created"
+    },
+    "source": {
+      "type": "string",
+      "description": "Source system that published this event (e.g., ingestion-worker)"
+    },
+    "correlationId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Correlation ID for tracing across services"
+    },
+    "data": {
+      "type": "object",
+      "required": [
+        "jobId",
+        "sourceUrl",
+        "rawPayload"
+      ],
+      "properties": {
+        "jobId": {
+          "type": "string",
+          "description": "Unique identifier assigned to the job"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL of the original job posting"
+        },
+        "sourceName": {
+          "type": "string",
+          "description": "Name of the job board or source (e.g., LinkedIn, Indeed)"
+        },
+        "rawPayload": {
+          "type": "string",
+          "description": "Raw JSON payload from the external source"
+        },
+        "fetchedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the job was fetched"
+        }
+      }
+    }
+  }
+}

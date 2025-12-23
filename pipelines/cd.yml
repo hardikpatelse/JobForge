@@ -1,0 +1,78 @@
+# CD Pipeline for JobForge
+# Placeholder for continuous deployment to Azure
+
+name: CD Pipeline
+
+# trigger:
+#   branches:
+#     include:
+#       - main
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# stages:
+#   - stage: DeployInfrastructure
+#     jobs:
+#       - job: DeployBicep
+#         steps:
+#           # - task: AzureCLI@2
+#           #   inputs:
+#           #     azureSubscription: 'Azure-Subscription'
+#           #     scriptType: 'bash'
+#           #     scriptLocation: 'inlineScript'
+#           #     inlineScript: |
+#           #       az deployment group create \
+#           #         --resource-group jobforge-rg \
+#           #         --template-file infra/bicep/main.bicep \
+#           #         --parameters infra/bicep/parameters.json
+      
+#   - stage: DeployServices
+#     dependsOn: DeployInfrastructure
+#     jobs:
+#       - job: DeployAPIs
+#         steps:
+#           # Phase 3-4: Deploy App Services
+#           # - task: AzureWebApp@1
+#           #   inputs:
+#           #     azureSubscription: 'Azure-Subscription'
+#           #     appName: 'jobforge-job-api'
+#           #     package: '$(System.DefaultWorkingDirectory)/publish/job-api.zip'
+      
+#       - job: DeployWorkers
+#         steps:
+#           # Phase 4: Deploy Worker Services
+#           # - task: AzureWebApp@1
+#           #   inputs:
+#           #     azureSubscription: 'Azure-Subscription'
+#           #     appName: 'jobforge-ingestion-worker'
+#           #     package: '$(System.DefaultWorkingDirectory)/publish/ingestion-worker.zip'
+      
+#   - stage: DeployFrontend
+#     dependsOn: DeployServices
+#     jobs:
+#       - job: DeployAngular
+#         steps:
+#           # Phase 5: Deploy to Static Web App or Storage Account
+#           # - task: AzureStaticWebApp@0
+#           #   inputs:
+#           #     app_location: 'frontend/jobforge-ui/dist'
+#           #     api_location: ''
+      
+#   - stage: DeployContainers
+#     # Phase 7: Deploy Docker containers
+#     jobs:
+#       - job: DeployToAKS
+#         steps:
+#           # Phase 8: Deploy to AKS with Helm
+#           # - task: HelmDeploy@0
+#           #   inputs:
+#           #     azureSubscription: 'Azure-Subscription'
+#           #     azureResourceGroup: 'jobforge-rg'
+#           #     kubernetesCluster: 'jobforge-aks'
+#           #     namespace: 'jobforge'
+#           #     command: 'upgrade'
+#           #     chartType: 'FilePath'
+#           #     chartPath: 'infra/helm/jobforge'
+
+# TODO: Add smoke tests, health checks, and rollback strategies

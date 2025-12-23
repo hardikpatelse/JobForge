@@ -1,0 +1,55 @@
+# CI Pipeline for JobForge
+# Placeholder for continuous integration builds and tests
+
+name: CI Pipeline
+
+# trigger:
+#   branches:
+#     include:
+#       - main
+#       - develop
+#       - feature/*
+
+# pool:
+#   vmImage: 'ubuntu-latest'
+
+# stages:
+#   - stage: Build
+#     jobs:
+#       - job: BuildBackend
+#         steps:
+#           # - task: UseDotNet@2
+#           #   inputs:
+#           #     version: '9.x'
+#           # - script: dotnet restore
+#           # - script: dotnet build --configuration Release
+#           # - script: dotnet test --no-build --verbosity normal
+      
+#       - job: BuildFrontend
+#         steps:
+#           # - task: NodeTool@0
+#           #   inputs:
+#           #     versionSpec: '20.x'
+#           # - script: npm ci
+#           #   workingDirectory: frontend/jobforge-ui
+#           # - script: npm run lint
+#           #   workingDirectory: frontend/jobforge-ui
+#           # - script: npm run build
+#           #   workingDirectory: frontend/jobforge-ui
+      
+#       - job: SecurityScan
+#         steps:
+#           # - task: SecurityScan@1
+#           #   inputs:
+#           #     scanType: 'secrets'
+#           # - task: SecurityScan@1
+#           #   inputs:
+#           #     scanType: 'dependencies'
+      
+#       - job: BuildDockerImages
+#         # Phase 7: Docker image builds
+#         steps:
+#           # - script: docker build -t jobforge/job-api:$(Build.BuildId) -f services/job-api/Dockerfile .
+#           # - script: docker push jobforge/job-api:$(Build.BuildId)
+
+# TODO: Add stages for validation, contract verification, and artifact publishing

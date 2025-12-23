@@ -50,26 +50,102 @@ JobForge follows a microservices-based, event-driven architecture:
 
 ```text
 jobforge/
-├── frontend/jobforge-ui/
+├── .editorconfig              # Editor configuration for consistent formatting
+├── .gitignore                 # Git ignore rules for .NET, Node, and OS files
+├── CODEOWNERS                 # Code ownership for PR reviews
+├── CONTRIBUTING.md            # Contribution guidelines and branching strategy
+├── LICENSE                    # MIT License
+├── README.md                  # This file
+├── SECURITY.md                # Security guidelines and policies
+├── TASKS.md                   # Task plan and execution roadmap
+├── frontend/
+│   └── jobforge-ui/           # Angular 20 standalone app with Tailwind
 ├── services/
-│   ├── job-api/
-│   ├── search-api/
-│   └── user-api/
+│   ├── job-api/               # .NET 9 API for job management
+│   ├── search-api/            # .NET 9 API for job search (Azure Cognitive Search)
+│   └── user-api/              # .NET 9 API for user profiles and preferences
 ├── workers/
-│   ├── ingestion-worker/
-│   ├── normalizer-worker/
-│   └── indexer-worker/
+│   ├── ingestion-worker/      # .NET 9 worker for fetching jobs from external sources
+│   ├── normalizer-worker/     # .NET 9 worker for normalizing raw job data
+│   └── indexer-worker/        # .NET 9 worker for indexing jobs in search
 ├── infra/
-│   ├── bicep/
-│   └── helm/
+│   ├── bicep/                 # Bicep templates for Azure infrastructure
+│   └── helm/                  # Helm charts for AKS (Phase 8)
 ├── pipelines/
-│   ├── ci.yml
-│   └── cd.yml
+│   ├── ci.yml                 # CI pipeline stub (build, test, lint)
+│   └── cd.yml                 # CD pipeline stub (deploy to Azure)
 └── docs/
-    ├── architecture/
-    ├── contracts/
-    └── ADR/
+    ├── architecture/          # C4 model diagrams (system, container)
+    ├── contracts/             # Event JSON schemas (JobFetched, JobNormalized, JobIndexed)
+    └── ADR/                   # Architecture Decision Records
 ```
+
+## Getting Started
+
+### Prerequisites
+- .NET 9 SDK
+- Node.js 20.x or higher
+- Azure CLI (for infrastructure deployment)
+- Docker (for Phase 7+)
+
+### Quick Start
+
+#### 1. Clone the Repository
+```bash
+git clone https://github.com/hardikpatelse/JobForge.git
+cd JobForge
+```
+
+#### 2. Build Backend Services
+```bash
+# Build all .NET projects
+dotnet build services/job-api/JobForge.Job.API.csproj
+dotnet build services/search-api/JobForge.Search.API.csproj
+dotnet build services/user-api/JobForge.User.API.csproj
+
+# Build all workers
+dotnet build workers/ingestion-worker/JobForge.Ingestion.Worker.csproj
+dotnet build workers/normalizer-worker/JobForge.Normalizer.Worker.csproj
+dotnet build workers/indexer-worker/JobForge.Indexer.Worker.csproj
+```
+
+#### 3. Run a Service Locally
+```bash
+cd services/job-api
+dotnet run
+# Navigate to http://localhost:5010/health
+```
+
+#### 4. Frontend Setup
+```bash
+cd frontend/jobforge-ui
+npm install
+npm start
+# Navigate to http://localhost:4200
+```
+
+#### 5. Deploy Infrastructure (Phase 2)
+```bash
+cd infra/bicep
+az deployment group create \
+  --resource-group jobforge-rg \
+  --template-file main.bicep \
+  --parameters environment=dev
+```
+
+### Project Status
+
+This is the **initial scaffolding** phase (Phase 0-1). The repository includes:
+
+✅ Complete directory structure  
+✅ Minimal, compilable .NET 9 services and workers  
+✅ Angular 20 standalone app structure  
+✅ Bicep infrastructure templates (placeholders)  
+✅ Event contract JSON schemas  
+✅ CI/CD pipeline stubs  
+✅ Governance files (.editorconfig, .gitignore, CODEOWNERS)  
+
+See [TASKS.md](TASKS.md) for the full roadmap.
 
 ## Hard Advice (Don’t Skip This)
 
